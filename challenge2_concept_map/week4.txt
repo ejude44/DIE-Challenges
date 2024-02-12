@@ -1,0 +1,19 @@
+Chapter 10: Longitudinal data
+The aim of this chapter was to give an introduction to working with longitudinal dataset in this case, data from from schoools, federal students with disabilities. This could help in deducing patterns or discovering trends to help solve problems. it was fun.
+
+Longitudinal Data:Data collected over time. Longitudinal analysis to refer to analyses of data at multiple time points.
+
+Data: six separate dataset of children count between 2012 and 2017.
+
+ Operations on Dataset: Importing data,Tidying data,Transforming data, Visualizing data, Modeling data, Communicating results. some functions  introduced includes: list.files, download.file, lubridate, identical, dplyr, ggplot2:: geom:jitter
+
+some new vocabulary: aggragate data, file path, list, read in, tidy format, statistical model, student-level data, longitudunal analysis, ratio, subset, vector.
+
+The datasets were cleaned and combined into one dataset.
+
+using ggplot and line chart for example, we could see that there was a rise of child counts for both male and feamle(between the ages of  6 and 21) in special education over the years(2012 - 2017).
+
+Also scatter plot was used to fit a better model for the relationship between male and female student counts. A linear regression model still gives useful information.
+
+
+

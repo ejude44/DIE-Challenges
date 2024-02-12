@@ -1,0 +1,280 @@
+Challenge 1- Text Analysis
+
+Let's load the packages before moving on to import the data: In this challenge, the content of our learning journals will be analysed over time and Text analysis will be performed on it. The learning journal contains a weekly personal report / summary of the weekly lectures of the seminar(Data to Evidence).
+
+```{r load packages, message = F, warning = F}
+library(tidyverse)
+library(here)
+library(tm)
+library(dplyr)
+library(wordcloud)
+library(tidytext)
+library(dataedu)
+library(ggplot2)
+```
+
+## Import Data
+
+Let's start by getting the data into our environment so we can start analyzing it. The contents of the journal were copied and saved in .txt files. So a simple readLines() operation on the .txt files will be sufficient in writing out the content contained in the files.
+
+After that, the content written out will be saved in Data frames.
+
+```{r read data}
+file_path1 <- "week1.txt"
+file_path2 <- "week2.txt"
+file_path3 <- "week3.txt"
+file_path4 <- "week4.txt"
+file_path5 <- "week5.txt"
+file_path6 <- "week6.txt"
+
+text_lines1 <- readLines(file_path1, warn = FALSE)
+text_lines2 <- readLines(file_path2, warn = FALSE)
+text_lines3 <- readLines(file_path3, warn = FALSE)
+text_lines4 <- readLines(file_path4, warn = FALSE)
+text_lines5 <- readLines(file_path5, warn = FALSE)
+text_lines6 <- readLines(file_path6, warn = FALSE)
+
+week1_df <- data.frame(Content = text_lines1)
+week2_df <- data.frame(Content = text_lines2)
+week3_df <- data.frame(Content = text_lines3)
+week4_df <- data.frame(Content = text_lines4)
+week5_df <- data.frame(Content = text_lines5)
+week6_df <- data.frame(Content = text_lines6)
+```
+
+# Tokenization
+
+In this step, the dataframes created from above which is a two column data frame containing sentences from the readline step will be converted to smaller units of words(Tokenization).
+
+```{r}
+
+week1Tokens <- 
+  week1_df %>%
+  unnest_tokens(output = word, input = Content)
+
+week2Tokens <- 
+  week2_df %>%
+  unnest_tokens(output = word, input = Content)
+
+week3Tokens <- 
+  week3_df %>%
+  unnest_tokens(output = word, input = Content)
+
+week4Tokens <- 
+  week4_df %>%
+  unnest_tokens(output = word, input = Content)
+
+week5Tokens <- 
+  week5_df %>%
+  unnest_tokens(output = word, input = Content)
+
+week6Tokens <- 
+  week6_df %>%
+  unnest_tokens(output = word, input = Content)
+
+```
+
+Stop word removal
+
+In this step meaningless word that add no meaning to the main context of the sentences will be removed. The stop word list is already predefined by another package.
+
+```{r}
+data(stop_words)
+
+week1Tokens <-
+  week1Tokens %>%
+  anti_join(stop_words, by = "word")
+
+week2Tokens <-
+  week2Tokens %>%
+  anti_join(stop_words, by = "word")
+
+week3Tokens <-
+  week3Tokens %>%
+  anti_join(stop_words, by = "word")
+
+week4Tokens <-
+  week4Tokens %>%
+  anti_join(stop_words, by = "word")
+
+week5Tokens <-
+  week5Tokens %>%
+  anti_join(stop_words, by = "word")
+
+week6Tokens <-
+  week6Tokens %>%
+  anti_join(stop_words, by = "word")
+
+```
+
+#join all tokens
+
+The resulting tokens will be joined using the bind_rows operation.
+
+```{r}
+combined_tokens <- bind_rows(week1Tokens, week2Tokens, week3Tokens, week4Tokens, week5Tokens, week6Tokens)
+
+```
+
+Visualization
+
+After the preparatory step, the tokens will be visualized to show the most occurring words on a weekly basis using a word cloud.
+
+A function will be created for this(create_word_cloud).
+
+# word cloud
+
+# Question
+On a weekly basis, what were the most occurring words?
+
+```{r}
+
+create_word_cloud <- function(tokens){
+  wordcloud(words = week1Tokens, min.freq = 1, scale = c(3, 0.5), colors = brewer.pal(8, "Dark2"))
+
+}
+
+word_cloud <- lapply(paste0("week",1:6,"Tokens"), create_word_cloud)
+
+```
+
+Below is a summary of frequently used words in the journal.
+
+```{r}
+combined_tokens %>% 
+    count(word, sort = TRUE) 
+```
+
+A table of the most occurring words in percentage.
+
+```{r}
+most_occuring <- combined_tokens %>%
+  
+  
+  count(word, sort = TRUE) %>%
+  # n as a percent of total words
+  mutate(percent = n / sum(n) * 100)
+```
+
+# sentiment Analysis
+
+This adds emotional context to the analysis. There is an already defined Dataset (nrc) from a package as seen below using the function get_sentiments. Sentiments could be negative, positive, neutral etc.
+
+```{r}
+get_sentiments("nrc")
+```
+
+# count positive words
+
+Below the count of the words associated with positive sentiments is shown in a table.
+
+```{r}
+# Only positive in the NRC dataset
+nrc_pos <-
+  get_sentiments("nrc") %>%
+  filter(sentiment == "positive")
+
+# Match to tokens
+pos_tokens_count <-
+  combined_tokens %>%
+  inner_join(nrc_pos, by = "word") %>%
+  # Total appearance of positive words
+  count(word, sort = TRUE) 
+
+pos_tokens_count
+```
+
+# Visualization
+
+# Question
+What  words are associated with positivity and their frequencies?
+
+Below is a sorted bar chart showing the counts of words associated with Positivity.
+
+
+
+```{r}
+
+pos_tokens_count %>%
+  # only words that appear 75 times or more
+  filter(n >= 3) %>%
+  ggplot(., aes(x = reorder(word, -n), y = n)) +
+  geom_bar(stat = "identity", fill = dataedu_colors("darkblue")) +
+  labs(
+    title = "Count of Words Associated with Positivity",
+    subtitle = "Words associated with postivity",
+    caption = "Data: Journal and NRC",
+    x = "",
+    y = "Count"
+  ) +
+  theme_dataedu()
+```
+
+# Other Visualization
+
+Using another approach, the contents of the journal will be extracted, pre processed and visualized. Firstly, the data is read this time using a function read_and_preprocess.
+
+# Question
+
+Which week of the lecture was the student more happy?
+
+```{r}
+read_and_preprocess <- function(file_path) {
+  text <- tolower(readLines(file_path, warn = FALSE))
+  text <- gsub("[[:punct:]]", " ", text)
+  return(text)
+}
+
+texts <- lapply(paste0("week", 1:6, ".txt"), read_and_preprocess)
+```
+
+The positive words will be filtered out and counted.
+
+```{r}
+positive_words <- get_sentiments("afinn")$word
+
+# Function to count positive words in a text
+count_positive_words <- function(text) {
+  words <- unlist(strsplit(text, " "))
+  positive_count <- sum(words %in% positive_words)
+  return(positive_count)
+}
+
+positive_counts <- sapply(texts, count_positive_words)
+
+
+
+```
+
+A data frame containing the the counts of positive words on a weekly basis will be created and visualized using a line chart.
+
+```{r}
+weeks <- paste0("Week", 1:6)
+df2 <- data.frame(Week = weeks, PositiveWordsCount = positive_counts)
+
+
+```
+
+```{r}
+ggplot(df2, aes(x = Week, y = PositiveWordsCount)) +
+  geom_line(color = "blue",size = 2) +
+  geom_point(color = "red", size = 3) +
+  geom_smooth(method = "loess", se = FALSE, color = "green") +
+  labs(
+    title = "Count of Positive Words Over Time",
+    x = "Week",
+    y = "Positive Words Count",
+    caption = "Smoothed trend line"
+  ) +
+  theme_dataedu() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    axis.title = element_text(face = "bold"),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+
+
+```
+
+As observed above, there seemed to be more positive words(12) in the first week of the lecture compared to other weeks. :)

@@ -1,0 +1,214 @@
+---
+---
+---
+
+# Challenge 2- Social Network Analysis
+
+Coming from the last challenge on Text Analysis, in this challenge the same dataset will be used. The personal journal remains the data source. In the first challenge, the focus was keenly analyzing Text to further understanding and getting deeper insights into the contents of the seminar/journal. In this challenge, we would like to see how words in the journal relate to one another.
+
+As usual, we begin by installing/ importing the needed packages/libraries needed for this challenge.
+
+```{r}
+library(tidyverse)
+library(here)
+library(tm)
+library(dplyr)
+library(igraph)
+library(tidytext)
+library(dataedu)
+
+```
+
+# Importing/ Reading
+
+In this step, the content of the journal over a span of six weeks will be read and imported into our work space and stored as data frames (week1_df -week2_df).
+
+```{r}
+file_path1 <- "week1.txt"
+file_path2 <- "week2.txt"
+file_path3 <- "week3.txt"
+file_path4 <- "week4.txt"
+file_path5 <- "week5.txt"
+file_path6 <- "week6.txt"
+
+text_lines1 <- readLines(file_path1, warn = FALSE)
+text_lines2 <- readLines(file_path2, warn = FALSE)
+text_lines3 <- readLines(file_path3, warn = FALSE)
+text_lines4 <- readLines(file_path4, warn = FALSE)
+text_lines5 <- readLines(file_path5, warn = FALSE)
+text_lines6 <- readLines(file_path6, warn = FALSE)
+
+week1_df <- data.frame(Content = text_lines1)
+week2_df <- data.frame(Content = text_lines2)
+week3_df <- data.frame(Content = text_lines3)
+week4_df <- data.frame(Content = text_lines4)
+week5_df <- data.frame(Content = text_lines5)
+week6_df <- data.frame(Content = text_lines6)
+
+
+```
+
+# Tokenisation
+
+Now, the lines/sentences of the obtained from the readlines operation will be broken down into words or tokens in a process known as Tokenization using the unnest_tokens function.
+
+```{r}
+week1Tokens <- 
+  week1_df %>%
+  unnest_tokens(output = word, input = Content)
+
+week2Tokens <- 
+  week2_df %>%
+  unnest_tokens(output = word, input = Content)
+
+week3Tokens <- 
+  week3_df %>%
+  unnest_tokens(output = word, input = Content)
+
+week4Tokens <- 
+  week4_df %>%
+  unnest_tokens(output = word, input = Content)
+
+week5Tokens <- 
+  week5_df %>%
+  unnest_tokens(output = word, input = Content)
+
+week6Tokens <- 
+  week6_df %>%
+  unnest_tokens(output = word, input = Content)
+
+```
+
+# Further processing step - Stop words removal
+
+Like we did in the previous challenge, words that don't add meaning to the context of the sentences will be removed from using 'data(stop_words)' and 'anti_join'
+
+```{r}
+
+data(stop_words)
+
+week1Tokens <-
+  week1Tokens %>%
+  anti_join(stop_words, by = "word")
+
+week2Tokens <-
+  week2Tokens %>%
+  anti_join(stop_words, by = "word")
+
+week3Tokens <-
+  week3Tokens %>%
+  anti_join(stop_words, by = "word")
+
+week4Tokens <-
+  week4Tokens %>%
+  anti_join(stop_words, by = "word")
+
+week5Tokens <-
+  week5Tokens %>%
+  anti_join(stop_words, by = "word")
+
+week6Tokens <-
+  week6Tokens %>%
+  anti_join(stop_words, by = "word")
+
+
+```
+
+# Joining all Tokens
+
+Now, all tokens from the six weeks of the seminar will be joint using the 'bind_rows' operation.
+
+```{r}
+combined_tokens <- bind_rows(week1Tokens, week2Tokens, week3Tokens, week4Tokens, week5Tokens, week6Tokens)
+
+```
+
+# View
+
+Take a look at the data.
+
+```{r}
+combined_tokens %>% 
+    count(word, sort = TRUE) 
+
+glimpse(combined_tokens)
+```
+
+```{r}
+most_occuring <- combined_tokens %>%
+  count(word, sort = TRUE) %>%
+  # n as a percent of total words
+  mutate(count = n)
+```
+
+# Most Occurring words
+
+for this challenge,we have decided to create our concept map using the most occurring words i.e Words with most frequencies. This decision is consequent upon the fact that these words will better give a general overview of the seminar as opposed using the most important words in relation to a topic.
+
+```{r}
+most_occuring <- most_occuring  %>%
+  filter(n >= 4)  
+most_occuring
+```
+
+# Creating the concept map
+
+Now, we will create the concept map using the 'tm' package and visualize it using the 'igraph' package.
+
+first a corpus is created from the list of the most occurring words.
+
+# Corpus
+
+A corpus refers to a collection of text documents that are used for analysis. A corpus can include a wide range of text data, such as books, articles, tweets, emails, etc. It serves as the input for various text processing tasks, including tokenization, stemming, and sentiment analysis, among others.
+
+Further, the corpus will transformed to lower case, punctuation as well as numbers will be removed.
+
+From the resulting corpus, a document term matrix will be created. This document term matrix(dtm) is pivotal to the creation of our concept map. The resulting DTM is transformed to a Matrix. The importance of each term is calculated, the top terms are selected and the edges are created. Thereafter, the graph is visualized.
+
+```{r}
+set.seed(201)
+
+# Create a corpus
+corpus <- Corpus(VectorSource(most_occuring))
+
+# Preprocess the corpus
+corpus <- tm_map(corpus, content_transformer(tolower))
+corpus <- tm_map(corpus, removePunctuation)
+corpus <- tm_map(corpus, removeNumbers)
+
+
+# Create a document term matrix (DTM)
+dtm <- DocumentTermMatrix(corpus)
+
+# Convert DTM to a matrix
+mat <- as.matrix(dtm)
+
+# Calculate the importance of each term (e.g., simple word counts)
+term_freq <- colSums(mat)
+
+# Select the most important terms (e.g., top 10 terms)
+top_terms <- names(sort(term_freq, decreasing = TRUE)[1:25])
+
+# Create a graph
+edges <- combn(top_terms, 2)
+
+# Create a graph from the edges
+graph <- graph_from_edgelist(t(edges), directed = TRUE)
+
+# Plot the graph
+plot(graph, layout = layout.fruchterman.reingold)
+
+
+```
+
+# Research Question
+
+What does the realized Concept map tell you about the Journal?
+
+# Answers
+
+-   Closely linked concepts are closer to each other in the map as opposed to loosely linked concepts.
+
+-   Each node in the map are really familiar concepts
+
+-   There exists multiple relationship between the realised concepts, simply put, the concepts are highly interwoven.

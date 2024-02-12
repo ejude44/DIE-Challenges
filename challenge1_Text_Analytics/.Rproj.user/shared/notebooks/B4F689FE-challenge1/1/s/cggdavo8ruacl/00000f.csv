@@ -1,0 +1,4 @@
+"0","weeks <- paste0(""Week"", 1:6)"
+"0","df2 <- data.frame(Week = weeks, PositiveWordsCount = positive_counts)"
+"0",""
+"0",""

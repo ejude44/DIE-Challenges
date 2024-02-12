@@ -1,0 +1,33 @@
+{
+    "id": "C83847A5",
+    "path": "~/learn_R/challenge1_Text_Analytics/challenge1.Rmd",
+    "project_path": "challenge1.Rmd",
+    "type": "r_markdown",
+    "hash": "3014821620",
+    "contents": "",
+    "dirty": false,
+    "created": 1704581471217.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "168,85",
+        "scrollLine": "159",
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "docOutlineVisible": "0",
+        "rmdVisualModeLocation": "3021:2376",
+        "rmdVisualCollapsedChunks": ""
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1705445759,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1705510509392,
+    "read_only": false,
+    "read_only_alternatives": []
+}
