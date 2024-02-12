@@ -1,0 +1,170 @@
+Paper Review  1
+Paper: Cristobal Romero, Sebastian Ventura. 2020. Educational data mining and learning analytics:
+An updated survey
+Purpose of the paper: To redo a comprehensive overview of the current state of knowledge in Educational data mining and learning analytics.
+Dataset: a list of public datasets for Educational Data mining is shown in table below
+Methods: A list of methods for Educational data mining and learning analytics are shown in table below.
+Reflection on last Class(Working with data) - chapter 7
+we were able to go through some basic uses cases, and functions in R studio which gave me personally a better understang of  Data handling using R studio.
+This could be a base to the kind of operations  that would be done on datasets rather frequently throughtout the course of the seminar.
+The operations on the Data includes: 
+creating Data
+read colums
+read rows
+rename columns and rows
+select some specific colums and rows
+subsetting
+excluding variables
+selecting observations
+missing values and removing same
+remove duplicates
+Data classses and Outliers
+some key terms introduced in this chapter included: data frame, item, joins, keys, log-trace data, passed arguments, reverse scale, regression, survey, tibble, vectorize.
+
+In this chapter an educational dataset was used. Also, tidyverse a set of packages for data manipulation, exploration and visualization was used.
+
+The data was first imported, this imcluded the pre_survey, course data and log-trace data from the dataedu package.
+
+some renaming of columns were made including transforming of some specific data using the mutate and mutate_at function. sample datasets were created using tibble.
+
+The datasets were joined(with functions like left_join, semi_join, anti_join) after the processing step some visualisations were made using the ggplot2 package.
+
+some charts used  included:  scatter plot and bar chart.
+
+The concept of liner models(regression) was equally introduced.
+
+I was curious at first to see how the first chapter and introduction would be, but it was  fun and quite fufilling to learn new things.
+
+
+Chapter 8 - Walthrough 2(gradebook data)- Review
+Data type - Classworks and GradeBook Data.
+Dataset  type- Table(contains several columns like student name, running average, letter grade, homeworks, classworks, formative assessments, project scores etc )
+Operations on Dataset - read,   rename, handling missing Data, Data frame creation, visualization.
+
+Ideas- other research Questions
+Mulitple regression analysis- Gr = B1 + B2 Gr1 + B3 
+Grade relationship Gender
+Grade relationship Gender + financial
+Formative assement relates HW, Class work and project Grades......
+FA relates Grades
+
+                             Summary
+In this chapter, gradebook(also an educational dataset) data was used.  some new vocabulary introduced in this chapter includes: correlation, directory, environment, factor level, linear model, linearity, missing values, ouliers, string.
+
+After importing the excelgradebook data, some funtions operated on it includes; rename, remove_empty,select, pivot_longer.
+
+
+
+After the data cleaning step, the data was visualized using ggplot: some charts used includes: bar chart(geometric bar), box plot(geometric boxplot).
+
+
+There was also a check for linearity using a scatter plot to for example find if there is a relationship between overall grade and formative assessments. 
+
+Also using ggplot2 and scatter plot to find line of best fit. The strength of the relationship between the two variables denoted by the correlation coefficient.
+
+Box plot were used detect outliers in the formative assessment or overall grades.
+
+it was overall fun and quite insghtful as new techniques were learnt.
+
+
+
+We were required to come up with an analysis report on some research questions on the Gradebook dataset.
+
+It was quite challenging but quite insightful at the same time. we had to put into use the little knowledge we had gathered so far.
+
+Chapter 9: Walkthrough - Aggregate Data
+Aggregate Data:Data gotten from various sources which have been combined, aggregated or grouped together.
+
+Data: race/ethnic data and FRPL data(free/reduced price lunch) from district schools.
+Dataset: Table
+
+Various operations on the Dataset includes: extraction using tabulizer, transformations(tidying and joins), Visualization
+
+In cleaning up of the dataset, functions like: select, filter, mutate(mutate_if, mutate_at).
+
+After several cleanups and joining of the data, it was visuallized using ggplot2 to clearly communicate patterns, trends and observation.
+
+for instance, it was found out using a barchart that there  were overall higher percentage of Black and white students at these schools.
+
+And most remarkably, the higher the FRPL percentage, the lower the population of white students. This result is common amongst
+Midwestern and northeastern metropolitan school systems
+
+Analysis Report 1: Gradebook Data
+
+We were required to come up with an analysis report on some research questions on the Gradebook dataset.
+
+It was quite challenging but quite insightful at the same time. we had to put into use the little knowledge we had gathered so far.
+
+The most challenging part of the analysis step was to futher clean the dataset, joining several columns and dealing with missing data as this is often the case that not all entries are available or suitable for futher use.
+
+Overall the gradebook data set provided great insights into the performances of the students over time and in different areas like for example, finding out the relationships or the correlation between the score in homeworks and the score in the final project or running average.
+
+Also, it provided some logical deductions based on the data available and the visualisations obtained.
+
+
+
+Chapter 10: Longitudinal data
+The aim of this chapter was to give an introduction to working with longitudinal dataset in this case, data from from schoools, federal students with disabilities. This could help in deducing patterns or discovering trends to help solve problems. it was fun.
+
+Longitudinal Data:Data collected over time. Longitudinal analysis to refer to analyses of data at multiple time points.
+
+Data: six separate dataset of children count between 2012 and 2017.
+
+ Operations on Dataset: Importing data,Tidying data,Transforming data, Visualizing data, Modeling data, Communicating results. some functions  introduced includes: list.files, download.file, lubridate, identical, dplyr, ggplot2:: geom:jitter
+
+some new vocabulary: aggragate data, file path, list, read in, tidy format, statistical model, student-level data, longitudunal analysis, ratio, subset, vector.
+
+The datasets were cleaned and combined into one dataset.
+
+using ggplot and line chart for example, we could see that there was a rise of child counts for both male and feamle(between the ages of  6 and 21) in special education over the years(2012 - 2017).
+
+Also scatter plot was used to fit a better model for the relationship between male and female student counts. A linear regression model still gives useful information.
+
+
+
+11 - Text Analysis:
+In this chapter we learnt about working with data in Text format since most Educational data could be stored and retrieved in this way.
+
+Data: tweets; from the tidyTueday
+
+The concept of tokenization was also introduced which involves the breaking down of sentences into smaller components or words. 
+The data was cleaned, tranformed and visualized . Important in the cleaning step involved the removal of stop words from the dataset. Also, sentiemts analysis was perfmed on the dataset.
+
+some new functions introduced includes: sample_n, set.seed, tidytext, nrc::get_sentiments, readr::read_delim, rtweet::lookup_statuses.
+
+Further processing step carried on the tweets dataset includes: filtering(for example selecting only english tweets)
+
+converting sentence block into individual words using unnest_tokens.
+
+In the end, some visualizations were made using ggplot2 for example, a bar chart was used to show the words with higher counts(occurence).
+Analysis  Report 2:
+providing the second analysis report was quite pivotal in the learning process. It gave me the opportunity to improve upon the lapses of the first analytic report especially giving more confidence with handling data and reporting scientific works.
+
+
+12 -  Social Aspects of learning(social network analysis
+
+This chapter was focused in the analysis, transformation and visualization of tidytuesday data(interactions- tweets).
+
+Data: #tidytuesday data(tweets) - Network Data
+
+Operations on data: Transformation and Visualization.
+
+In procesing the data, an edgelist was created. An edgelist is a dataset where each row is a unique interaction between two parties. Each row which respresents a single relationship is called an Edge.
+
+The aim is understanding interactions among #TidyTuesday participants.
+
+some new vocabulary introduced are: Application Programming Interface (API),
+edgelist, edge, influence model, regex, selection model, social network analysis, sociogram, vetex and some functions: rtweet, randomNames, tidyr, tidygraph, ggraph
+
+The aim of this chapter was to use social media data from the #tidytuesday hashtag to prepare and visualize social network data.
+
+The count of sender and receiver(all_mentions) were stored
+the counts of the edgelist(conversation)
+some charts used for the visualisation includes: Network graph with centrality to calculate the centrality of each individual using the built in centrality_authority() function.
+
+it was indeed fun as usual. a good experience overall.
+
+
+
+
+

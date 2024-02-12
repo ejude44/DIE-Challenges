@@ -1,0 +1,24 @@
+12 -  Social Aspects of learning(social network analysis
+
+This chapter was focused in the analysis, transformation and visualization of tidytuesday data(interactions- tweets).
+
+Data: #tidytuesday data(tweets) - Network Data
+
+Operations on data: Transformation and Visualization.
+
+In procesing the data, an edgelist was created. An edgelist is a dataset where each row is a unique interaction between two parties. Each row which respresents a single relationship is called an Edge.
+
+The aim is understanding interactions among #TidyTuesday participants.
+
+some new vocabulary introduced are: Application Programming Interface (API),
+edgelist, edge, influence model, regex, selection model, social network analysis, sociogram, vetex and some functions: rtweet, randomNames, tidyr, tidygraph, ggraph
+
+The aim of this chapter was to use social media data from the #tidytuesday hashtag to prepare and visualize social network data.
+
+The count of sender and receiver(all_mentions) were stored
+the counts of the edgelist(conversation)
+some charts used for the visualisation includes: Network graph with centrality to calculate the centrality of each individual using the built in centrality_authority() function.
+
+it was indeed fun as usual. a good experience overall.
+
+

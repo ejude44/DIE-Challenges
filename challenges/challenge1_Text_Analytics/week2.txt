@@ -1,0 +1,32 @@
+Chapter 8 - Walthrough 2(gradebook data)- Review
+Data type - Classworks and GradeBook Data.
+Dataset  type- Table(contains several columns like student name, running average, letter grade, homeworks, classworks, formative assessments, project scores etc )
+Operations on Dataset - read,   rename, handling missing Data, Data frame creation, visualization.
+
+Ideas- other research Questions
+Mulitple regression analysis- Gr = B1 + B2 Gr1 + B3 
+Grade relationship Gender
+Grade relationship Gender + financial
+Formative assement relates HW, Class work and project Grades......
+FA relates Grades
+
+                             Summary
+In this chapter, gradebook(also an educational dataset) data was used.  some new vocabulary introduced in this chapter includes: correlation, directory, environment, factor level, linear model, linearity, missing values, ouliers, string.
+
+After importing the excelgradebook data, some funtions operated on it includes; rename, remove_empty,select, pivot_longer.
+
+
+
+After the data cleaning step, the data was visualized using ggplot: some charts used includes: bar chart(geometric bar), box plot(geometric boxplot).
+
+
+There was also a check for linearity using a scatter plot to for example find if there is a relationship between overall grade and formative assessments. 
+
+Also using ggplot2 and scatter plot to find line of best fit. The strength of the relationship between the two variables denoted by the correlation coefficient.
+
+Box plot were used detect outliers in the formative assessment or overall grades.
+
+it was overall fun and quite insghtful as new techniques were learnt.
+
+
+

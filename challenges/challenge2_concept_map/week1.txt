@@ -1,0 +1,39 @@
+Paper Review  1
+Paper: Cristobal Romero, Sebastian Ventura. 2020. Educational data mining and learning analytics:
+An updated survey
+Purpose of the paper: To redo a comprehensive overview of the current state of knowledge in Educational data mining and learning analytics.
+Dataset: a list of public datasets for Educational Data mining is shown in table below
+Methods: A list of methods for Educational data mining and learning analytics are shown in table below.
+Reflection on last Class(Working with data) - chapter 7
+we were able to go through some basic uses cases, and functions in R studio which gave me personally a better understang of  Data handling using R studio.
+This could be a base to the kind of operations  that would be done on datasets rather frequently throughtout the course of the seminar.
+The operations on the Data includes: 
+creating Data
+read colums
+read rows
+rename columns and rows
+select some specific colums and rows
+subsetting
+excluding variables
+selecting observations
+missing values and removing same
+remove duplicates
+Data classses and Outliers
+some key terms introduced in this chapter included: data frame, item, joins, keys, log-trace data, passed arguments, reverse scale, regression, survey, tibble, vectorize.
+
+In this chapter an educational dataset was used. Also, tidyverse a set of packages for data manipulation, exploration and visualization was used.
+
+The data was first imported, this imcluded the pre_survey, course data and log-trace data from the dataedu package.
+
+some renaming of columns were made including transforming of some specific data using the mutate and mutate_at function. sample datasets were created using tibble.
+
+The datasets were joined(with functions like left_join, semi_join, anti_join) after the processing step some visualisations were made using the ggplot2 package.
+
+some charts used  included:  scatter plot and bar chart.
+
+The concept of liner models(regression) was equally introduced.
+
+I was curious at first to see how the first chapter and introduction would be, but it was  fun and quite fufilling to learn new things.
+
+
+

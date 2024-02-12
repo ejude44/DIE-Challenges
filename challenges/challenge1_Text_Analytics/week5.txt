@@ -1,0 +1,17 @@
+11 - Text Analysis:
+In this chapter we learnt about working with data in Text format since most Educational data could be stored and retrieved in this way.
+
+Data: tweets; from the tidyTueday
+
+The concept of tokenization was also introduced which involves the breaking down of sentences into smaller components or words. 
+The data was cleaned, tranformed and visualized . Important in the cleaning step involved the removal of stop words from the dataset. Also, sentiemts analysis was perfmed on the dataset.
+
+some new functions introduced includes: sample_n, set.seed, tidytext, nrc::get_sentiments, readr::read_delim, rtweet::lookup_statuses.
+
+Further processing step carried on the tweets dataset includes: filtering(for example selecting only english tweets)
+
+converting sentence block into individual words using unnest_tokens.
+
+In the end, some visualizations were made using ggplot2 for example, a bar chart was used to show the words with higher counts(occurence).
+Analysis  Report 2:
+providing the second analysis report was quite pivotal in the learning process. It gave me the opportunity to improve upon the lapses of the first analytic report especially giving more confidence with handling data and reporting scientific works.

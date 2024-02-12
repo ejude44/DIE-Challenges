@@ -1,0 +1,38 @@
+We were required to come up with an analysis report on some research questions on the Gradebook dataset.
+
+It was quite challenging but quite insightful at the same time. we had to put into use the little knowledge we had gathered so far.
+
+Chapter 9: Walkthrough - Aggregate Data
+Aggregate Data:Data gotten from various sources which have been combined, aggregated or grouped together.
+
+Data: race/ethnic data and FRPL data(free/reduced price lunch) from district schools.
+Dataset: Table
+
+Various operations on the Dataset includes: extraction using tabulizer, transformations(tidying and joins), Visualization
+
+In cleaning up of the dataset, functions like: select, filter, mutate(mutate_if, mutate_at).
+
+After several cleanups and joining of the data, it was visuallized using ggplot2 to clearly communicate patterns, trends and observation.
+
+for instance, it was found out using a barchart that there  were overall higher percentage of Black and white students at these schools.
+
+And most remarkably, the higher the FRPL percentage, the lower the population of white students. This result is common amongst
+Midwestern and northeastern metropolitan school systems
+
+Analysis Report 1: Gradebook Data
+
+We were required to come up with an analysis report on some research questions on the Gradebook dataset.
+
+It was quite challenging but quite insightful at the same time. we had to put into use the little knowledge we had gathered so far.
+
+The most challenging part of the analysis step was to futher clean the dataset, joining several columns and dealing with missing data as this is often the case that not all entries are available or suitable for futher use.
+
+Overall the gradebook data set provided great insights into the performances of the students over time and in different areas like for example, finding out the relationships or the correlation between the score in homeworks and the score in the final project or running average.
+
+Also, it provided some logical deductions based on the data available and the visualisations obtained.
+
+
+
+
+
+
