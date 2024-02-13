@@ -125,6 +125,7 @@ A function will be created for this(create_word_cloud).
 # word cloud
 
 # Question
+
 On a weekly basis, what were the most occurring words?
 
 ```{r}
@@ -187,11 +188,10 @@ pos_tokens_count
 # Visualization
 
 # Question
-What  words are associated with positivity and their frequencies?
+
+What words are associated with positivity and their frequencies?
 
 Below is a sorted bar chart showing the counts of words associated with Positivity.
-
-
 
 ```{r}
 

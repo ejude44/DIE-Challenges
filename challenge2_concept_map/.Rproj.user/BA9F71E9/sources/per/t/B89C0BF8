@@ -1,6 +1,6 @@
 {
     "id": "B89C0BF8",
-    "path": "~/learn_R/challenge2_concept_map/challenge2.Rmd",
+    "path": "~/learn_R/challenges/challenge2_concept_map/challenge2.Rmd",
     "project_path": "challenge2.Rmd",
     "type": "r_markdown",
     "hash": "1558113949",
@@ -19,8 +19,9 @@
         "rmdVisualMode": "true",
         "rmdVisualWrapConfigured": "true",
         "docOutlineVisible": "1",
-        "rmdVisualModeLocation": "173:0",
-        "rmdVisualCollapsedChunks": ""
+        "rmdVisualModeLocation": "4774:3240",
+        "rmdVisualCollapsedChunks": "",
+        "docOutlineSize": "136"
     },
     "folds": "",
     "lastKnownWriteTime": 1706457594,
